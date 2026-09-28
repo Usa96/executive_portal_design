@@ -1,0 +1,10 @@
+{
+  "name": "executive-portal-design",
+  "version": "3.0.0",
+  "private": true,
+  "description": "SANAM Executive Portal — design v3 preview",
+  "scripts": {
+    "dev": "node serve.js",
+    "start": "node serve.js"
+  }
+}

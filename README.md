@@ -37,6 +37,13 @@ Budget (consolidated + per-entity) · Access matrix · People · Audit trail.
 Real Estate is one company, Eradat, carrying the 7 Kuwait properties as assets
 (no folders, no separate budget).
 
+## Run locally
+
+```
+npm run dev
+```
+opens the preview at http://localhost:3000 (no install step — zero dependencies).
+
 ## Preview site
 
 `site/` is a self-contained static build of the artboard (page, runtime, assets).
