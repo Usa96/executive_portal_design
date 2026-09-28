@@ -9,6 +9,7 @@ Live canvas: https://claude.ai/artifact/FXxbzDrRSrr6KHw9xBKtWW
 ## Layout
 
 ```
+index.html / support.js / _blob/   static preview (what Pages and `npm run dev` serve)
 design/project/Main.dc.html   the artboard — markup, styles and logic in one file
 design/project/canvas.json    canvas index (one fluid artboard, launches focused)
 assets/images/                entity and platform photography (resized)
@@ -46,6 +47,6 @@ opens the preview at http://localhost:3000 (no install step — zero dependencie
 
 ## Preview site
 
-`site/` is a self-contained static build of the artboard (page, runtime, assets).
-`.github/workflows/pages.yml` deploys it to GitHub Pages on every push to `main`.
-Enable Pages once: repo **Settings → Pages → Source: GitHub Actions**.
+`index.html` + `support.js` + `_blob/` at the repo root are a self-contained static
+build of the artboard. GitHub Pages serves it from `main` (`.nojekyll` keeps the
+`_blob/` folder from being dropped).
