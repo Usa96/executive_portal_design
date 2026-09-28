@@ -36,3 +36,9 @@ Budget (consolidated + per-entity) · Access matrix · People · Audit trail.
 4 platforms → 16 grantable entities (11 companies + 5 MADAREK schools).
 Real Estate is one company, Eradat, carrying the 7 Kuwait properties as assets
 (no folders, no separate budget).
+
+## Preview site
+
+`site/` is a self-contained static build of the artboard (page, runtime, assets).
+`.github/workflows/pages.yml` deploys it to GitHub Pages on every push to `main`.
+Enable Pages once: repo **Settings → Pages → Source: GitHub Actions**.

@@ -1,0 +1,939 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>SANAM Executive Portal</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<style>
+body{margin:0;background:#21201f;font-family:"Helvetica Neue",Helvetica,"Segoe UI",sans-serif;color:#21201f;-webkit-font-smoothing:antialiased}
+a{color:#bdaba2}a:hover{color:#f6f1f0}
+*{box-sizing:border-box}
+button{font-family:inherit;cursor:pointer}
+.nav-link{background:none;border:0;padding:0;color:rgba(246,241,240,.72);font-size:13px;letter-spacing:.06em;text-transform:uppercase;transition:color .3s}
+.nav-link:hover{color:#bdaba2}
+.nav-link.on{color:#f6f1f0;border-bottom:1px solid #bdaba2;padding-bottom:4px}
+.btn-o{height:46px;padding:0 26px;border:1px solid #bdaba2;background:transparent;color:#bdaba2;font-size:13px;letter-spacing:.08em;text-transform:uppercase;transition:all .3s}
+.btn-o:hover{background:#bdaba2;color:#21201f}
+.btn-d{height:46px;padding:0 26px;border:1px solid #21201f;background:transparent;color:#21201f;font-size:13px;letter-spacing:.08em;text-transform:uppercase;transition:all .3s}
+.btn-d:hover{background:#21201f;color:#fff}
+.btn-f{height:46px;padding:0 26px;border:1px solid #21201f;background:#21201f;color:#f6f1f0;font-size:13px;letter-spacing:.08em;text-transform:uppercase;transition:all .3s}
+.btn-f:hover{background:#bdaba2;border-color:#bdaba2;color:#21201f}
+.btn-w{height:40px;padding:0 18px;border:1px solid #fff;background:transparent;color:#fff;font-size:12px;letter-spacing:.06em;text-transform:uppercase;transition:all .3s}
+.btn-w:hover{background:#fff;color:#21201f}
+.card{position:relative;overflow:hidden;border-radius:8px;border:0;padding:0;text-align:left;color:#fff;background:#3a3735;flex:0 0 auto;transition:transform .5s cubic-bezier(.2,.8,.2,1),box-shadow .5s}
+.card:hover{transform:translateY(-8px);box-shadow:0 40px 70px rgba(0,0,0,.45)}
+.card .img{position:absolute;inset:0;background-size:cover;background-position:center;transition:transform 1.2s cubic-bezier(.2,.8,.2,1)}
+.card:hover .img{transform:scale(1.06)}
+.card .veil{position:absolute;inset:0;background:linear-gradient(180deg,rgba(33,32,31,0) 35%,rgba(33,32,31,.92) 100%)}
+.card .body{position:relative;height:100%;display:flex;flex-direction:column;justify-content:flex-end;padding:24px}
+.row{display:flex;align-items:center;gap:18px;padding:18px 0;border:0;border-top:1px solid rgba(33,32,31,.12);background:transparent;color:#21201f;text-align:left;width:100%;transition:padding .25s,background .25s}
+.row:hover{background:rgba(189,171,162,.14);padding-left:12px}
+.row.dark{color:#f6f1f0;border-top-color:rgba(246,241,240,.12)}
+.row.dark:hover{background:rgba(255,255,255,.06)}
+.chip{height:36px;padding:0 16px;border:1px solid rgba(33,32,31,.25);background:transparent;color:#21201f;font-size:12px;letter-spacing:.06em;text-transform:uppercase;transition:all .25s}
+.chip:hover{border-color:#21201f}
+.chip.on{background:#21201f;border-color:#21201f;color:#f6f1f0}
+.fold{position:relative;border:1px solid rgba(33,32,31,.15);background:#fff;color:#21201f;text-align:left;padding:28px;min-height:220px;display:flex;flex-direction:column;justify-content:space-between;transition:all .3s;border-radius:8px}
+.fold:hover{background:#21201f;color:#f6f1f0;border-color:#21201f}
+.fold:hover .k{color:#bdaba2}
+.fold .k{color:rgba(33,32,31,.55);transition:color .3s}
+.crumb{background:none;border:0;padding:0;color:rgba(246,241,240,.7);font-size:12px;letter-spacing:.06em;text-transform:uppercase}
+.crumb:hover{color:#bdaba2;text-decoration:underline}
+.eyebrow{font-size:12px;letter-spacing:.14em;text-transform:uppercase}
+.cell{height:40px;display:flex;align-items:center;justify-content:center;font-size:11px;letter-spacing:.08em;text-transform:uppercase;border-radius:4px}
+.tag{display:inline-flex;align-items:center;height:22px;padding:0 9px;font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;border:1px solid currentColor;border-radius:3px;white-space:nowrap}
+.tree{display:flex;align-items:center;gap:12px;padding:10px 0;border:0;border-top:1px solid rgba(255,255,255,.1);background:transparent;color:#f6f1f0;text-align:left;width:100%}
+.tree:hover .tn{color:#bdaba2}
+.tn{transition:color .25s}
+input.search{height:46px;width:100%;border:0;border-bottom:1px solid rgba(246,241,240,.35);background:transparent;color:#f6f1f0;padding:0 0 0 30px;font:inherit;font-size:15px;outline:none}
+input.search::placeholder{color:rgba(246,241,240,.45)}
+input.search:focus{border-bottom-color:#bdaba2}
+.fade{animation:fadeup .7s cubic-bezier(.2,.8,.2,1)}
+@keyframes fadeup{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+.bounce{animation:bounce 1.6s infinite}
+@keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(6px)}}
+.hscroll{display:flex;gap:24px;overflow-x:auto;padding-bottom:16px;scroll-snap-type:x mandatory}
+.hscroll > *{scroll-snap-align:start}
+.hscroll::-webkit-scrollbar{height:6px}
+.hscroll::-webkit-scrollbar-thumb{background:#bdaba2;border-radius:6px}
+.burger{display:none;background:none;border:0;color:#f6f1f0;padding:6px}
+/* org chart */
+.org{display:flex;flex-direction:column;align-items:center}
+.org-root{background:#f6f1f0;color:#21201f;border-radius:6px;padding:22px 34px;display:flex;flex-direction:column;align-items:center;gap:6px;min-width:300px}
+.org-stem{width:1px;height:48px;background:#bdaba2}
+.org-cols{position:relative;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px;width:100%;padding-top:48px}
+.org-cols::before{content:"";position:absolute;top:0;left:12.5%;right:12.5%;height:1px;background:#bdaba2}
+.org-col{position:relative;display:flex;flex-direction:column;align-items:stretch;gap:0}
+.org-col::before{content:"";position:absolute;top:-48px;left:50%;width:1px;height:48px;background:#bdaba2}
+.org-plat{border:0;padding:0;border-radius:6px;overflow:hidden;position:relative;height:120px;color:#fff;text-align:left;cursor:pointer;background:#3a3735}
+.org-plat .img{position:absolute;inset:0;background-size:cover;background-position:center;filter:brightness(.4);transition:transform .8s}
+.org-plat:hover .img{transform:scale(1.05)}
+.org-plat .body{position:relative;height:100%;display:flex;flex-direction:column;justify-content:flex-end;padding:16px}
+.org-list{position:relative;display:flex;flex-direction:column;gap:10px;padding:22px 0 0 22px;margin-left:24px}
+.org-list::before{content:"";position:absolute;left:0;top:0;bottom:22px;width:1px;background:#bdaba2}
+.org-node{position:relative;display:flex;align-items:center;gap:12px;padding:12px 14px;border:1px solid rgba(246,241,240,.18);border-radius:6px;background:rgba(246,241,240,.04);color:#f6f1f0;text-align:left;width:100%;cursor:pointer;transition:all .25s}
+.org-node::before{content:"";position:absolute;left:-22px;top:50%;width:22px;height:1px;background:#bdaba2}
+.org-node:hover{background:#f6f1f0;color:#21201f;border-color:#f6f1f0}
+.org-node:hover .sub{color:#8a7568}
+.org-node .sub{font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:rgba(246,241,240,.55);transition:color .25s}
+.org-node .thumb{width:36px;height:36px;flex:0 0 36px;border-radius:4px;background-size:cover;background-position:center}
+.org-sub{padding:10px 0 0 22px;margin-left:18px}
+.org-sub::before{bottom:20px}
+.org-sub .org-node{padding:9px 12px}
+.org-sub .thumb{width:28px;height:28px;flex-basis:28px}
+@media (max-width: 1280px){
+  .topnav{height:auto !important;min-height:64px;padding:10px 24px !important;gap:10px;flex-wrap:wrap}
+  .navlinks{display:none !important;order:3;width:100%;flex-direction:column !important;align-items:flex-start !important;gap:14px !important;padding:14px 0 10px 0;border-top:1px solid rgba(246,241,240,.1)}
+  .navlinks.open{display:flex !important}
+  .navsearch{display:none !important}
+  .burger{display:inline-flex}
+}
+@media (max-width: 1100px){
+  .pad{padding-left:40px !important;padding-right:40px !important}
+  .plat{padding-right:0 !important}
+  .heropad{padding-left:40px !important;padding-right:40px !important}
+  .herostats{right:40px !important}
+  .scrollhint{left:40px !important}
+  .g4,.g3{grid-template-columns:repeat(2, minmax(0,1fr)) !important}
+  .h1{font-size:44px !important}
+  .h2{font-size:32px !important}
+  .mtx{grid-template-columns:180px repeat(4, minmax(0,1fr)) !important}
+  .org-cols{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:48px}
+  .hero{height:620px !important}
+  .hero2{height:460px !important}
+  .card.h400{height:380px !important}
+  .plat .hscroll{padding-right:40px}
+  .org-cols::before{display:none}
+  .org-col::before{display:none}
+}
+@media (max-width: 760px){
+  .pad{padding:56px 20px !important}
+  .plat{padding:56px 0 56px 20px !important;flex-direction:column !important;gap:28px !important}
+  .platintro{flex:0 0 auto !important;padding-right:20px}
+  .heropad{padding:0 20px !important;max-width:none !important;height:auto !important;min-height:0 !important}
+  .hero{height:auto !important;min-height:560px !important;padding-top:90px !important;padding-bottom:40px !important;display:flex;flex-direction:column;justify-content:flex-end}
+  .hero2{height:auto !important;min-height:400px !important;padding-top:80px !important}
+  .herostats{position:static !important;padding:28px 20px 0 20px;gap:22px !important;flex-wrap:wrap}
+  .scrollhint{display:none !important}
+  .g4,.g3,.g2{grid-template-columns:1fr !important;gap:24px !important}
+  .h1{font-size:36px !important;line-height:1.1 !important}
+  .h2{font-size:26px !important}
+  .hscroll > .card{width:280px !important;height:420px !important}
+  .card.h400{height:320px !important}
+  .tbl{grid-template-columns:44px 1fr !important;gap:6px 10px !important}
+  .tbl > :nth-child(n+3){display:none}
+  .mtx{grid-template-columns:1fr !important;gap:6px !important}
+  .mtx .cell{height:32px}
+  .hide-m{display:none !important}
+  .row{gap:12px;padding:14px 0}
+  .btn-o,.btn-d,.btn-f{padding:0 16px;height:42px;font-size:12px}
+  .wrapm{flex-direction:column;align-items:flex-start !important}
+  .eyebrow{font-size:11px}
+  select{min-width:0 !important;width:100%}
+  .org-cols{grid-template-columns:1fr}
+  .org-root{min-width:0;width:100%}
+}
+.hscroll{max-width:100%;width:100%}
+@media (max-width: 760px){
+  .herobtns > .btn-o{width:100%;justify-content:center;display:inline-flex;align-items:center}
+  .reqrow > span{flex:1 1 100%}
+  .reqrow{gap:12px !important}
+  .row .tag{display:none}
+  .hero2 > img{display:none}
+  .bars{gap:6px !important}
+  .bars .bar{width:9px !important}
+  .g2 > *,.g3 > *,.g4 > *{min-width:0;max-width:100%}
+  .row{min-width:0;max-width:100%;box-sizing:border-box}
+}
+</style>
+</helmet>
+
+<div style="width: 100%; min-height: 100vh; overflow-x: hidden; background: #21201f; color: #21201f; font-family: 'Helvetica Neue', Helvetica, 'Segoe UI', sans-serif">
+
+  <!-- ============ NAV ============ -->
+  <header class="topnav" style="position: sticky; top: 0; z-index: 50; display: flex; align-items: center; justify-content: space-between; padding: 0 56px; height: 72px; flex-wrap: wrap; background: rgba(33,32,31,.86); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(246,241,240,.08)">
+    <button onClick="{{goHome}}" aria-label="SANAM — Workspace" style="background: none; border: 0; padding: 0; display: flex; align-items: center; gap: 16px; color: #f6f1f0">
+      <img src="/_blob/d229a5977cc70d22a936e031c415c624" alt="SANAM" style="height: 34px; width: auto; display: block">
+      <span style="width: 1px; height: 26px; background: rgba(246,241,240,.25)"></span>
+      <span style="font-size: 10px; letter-spacing: .3em; color: #bdaba2">EXECUTIVE PORTAL</span>
+    </button>
+    <nav aria-label="Primary" class="navlinks {{menuCls}}" style="display: flex; gap: 30px; align-items: center">
+      <sc-for list="{{nav}}" as="n" hint-placeholder-count="7"><button class="nav-link {{n.cls}}" onClick="{{n.go}}">{{n.label}}</button></sc-for>
+    </nav>
+    <div class="navright" style="display: flex; align-items: center; gap: 18px">
+      <button class="burger" aria-label="Menu" onClick="{{toggleMenu}}"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+      <button onClick="{{goDocs}}" class="nav-link navsearch" aria-label="Search" style="display: flex; align-items: center; gap: 8px"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>Search</button>
+      <button class="btn-o" style="height: 38px; padding: 0 18px; font-size: 12px" onClick="{{goDocs}}">Upload</button>
+      <span style="width: 34px; height: 34px; border-radius: 50%; background: #bdaba2; color: #21201f; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700" title="{{user.name}} · {{user.role}}">{{user.initial}}</span>
+    </div>
+  </header>
+
+  <!-- ================= HOME ================= -->
+  <sc-if value="{{isHome}}" hint-placeholder-val="{{true}}">
+  <div class="fade">
+    <!-- Hero -->
+    <section class="hero" style="position: relative; height: 760px; overflow: hidden; background: #21201f">
+      <video autoplay muted loop playsinline defaultMuted="{{yes}}" volume="{{zero}}" onLoadedMetadata="{{muteVideo}}" onPlay="{{muteVideo}}" onVolumeChange="{{muteVideo}}" poster="{{heroImg}}" src="/_blob/836130f58269f06c679118d87c9d4676" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: brightness(.45)"></video>
+      <div style="position: absolute; inset: 0; background: linear-gradient(180deg, rgba(33,32,31,.35) 0%, rgba(33,32,31,0) 40%, rgba(33,32,31,.65) 100%)"></div>
+      <div style="position: relative; height: 100%; display: flex; flex-direction: column; justify-content: center; padding: 0 96px; max-width: 980px; gap: 22px" class="heropad">
+        <span class="eyebrow" style="color: #bdaba2">{{today}}</span>
+        <h1 class="h1" style="margin: 0; font-size: 76px; font-weight: 700; line-height: 1.0; color: #f6f1f0; letter-spacing: -.015em">{{greeting}},<br>{{user.first}}.</h1>
+        <p style="margin: 6px 0 0 0; font-size: 17px; color: rgba(246,241,240,.8); max-width: 560px; line-height: 1.6">{{user.name}} · {{user.role}}</p>
+        <div class="herobtns" style="display: flex; gap: 14px; margin-top: 12px; flex-wrap: wrap">
+          <button class="btn-o" onClick="{{goDocs}}">Browse all documents</button>
+          <button class="btn-o" style="border-color: rgba(246,241,240,.5); color: #f6f1f0" onClick="{{goMap}}">Explore the structure</button>
+        </div>
+      </div>
+          </section>
+
+    <!-- Platforms -->
+    <section class="pad" style="background: #f6f1f0; padding: 88px 96px">
+      <div class="wrapm" style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 32px; flex-wrap: wrap; gap: 16px">
+        <div style="display: flex; flex-direction: column; gap: 14px">
+          <span class="eyebrow" style="color: #8a7568">Platforms</span>
+          <h2 class="h2" style="margin: 0; font-size: 44px; font-weight: 700; line-height: 1.1">Strategic assets across the GCC</h2>
+        </div>
+        <button class="btn-d" onClick="{{goMap}}">Group structure</button>
+      </div>
+      <div class="g4" style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 20px">
+        <sc-for list="{{platforms}}" as="p" hint-placeholder-count="4">
+          <button class="card h400" style="height: 460px; width: 100%" onClick="{{p.go}}" aria-label="{{p.name}}">
+            <div class="img" style="background-image: url({{p.hero}}); background-color: {{p.fallback}}"></div>
+            <sc-if value="{{p.hasBrand}}" hint-placeholder-val="{{false}}"><img src="{{p.brand}}" alt="" style="position: absolute; left: 50%; top: 34%; transform: translate(-50%, -50%); width: 62%; height: auto; opacity: .9"></sc-if>
+            <div class="veil"></div>
+            <div class="body">
+              <span class="eyebrow" style="color: #bdaba2">{{p.countLabel}}</span>
+              <span style="font-size: 28px; font-weight: 700; margin-top: 8px; line-height: 1.1">{{p.name}}</span>
+              <span style="font-size: 13.5px; color: rgba(255,255,255,.8); margin-top: 10px; line-height: 1.5">{{p.thesis}}</span>
+              <span class="btn-w" style="display: inline-flex; align-items: center; width: fit-content; margin-top: 18px">Open platform</span>
+            </div>
+          </button>
+        </sc-for>
+      </div>
+    </section>
+
+    <!-- Needs you — dark band -->
+    <section class="pad g2" style="background: #21201f; color: #f6f1f0; padding: 88px 96px; display: grid; grid-template-columns: 1fr 1.4fr; gap: 64px">
+      <div style="display: flex; flex-direction: column; gap: 18px">
+        <span class="eyebrow" style="color: #bdaba2">Approvals</span>
+        <h2 class="h2" style="margin: 0; font-size: 44px; font-weight: 700; line-height: 1.1">Access requests</h2>
+        <p style="margin: 0; color: rgba(246,241,240,.7); font-size: 15px">{{stats.decide}} pending</p>
+      </div>
+      <div style="display: flex; flex-direction: column">
+        <sc-for list="{{requests}}" as="r" hint-placeholder-count="2">
+          <div class="reqrow" style="display: flex; gap: 24px; align-items: center; padding: 24px 0; border-top: 1px solid rgba(246,241,240,.14); flex-wrap: wrap">
+            <span style="flex: 1; display: flex; flex-direction: column; gap: 6px">
+              <span style="font-size: 17px"><strong>{{r.role}}</strong> wants {{r.folder}} on {{r.node}}</span>
+              <span style="font-size: 13px; color: rgba(246,241,240,.6)">{{r.note}} — {{r.ts}}</span>
+            </span>
+            <button class="btn-o" style="height: 40px; padding: 0 18px; font-size: 12px" onClick="{{r.deny}}">Deny</button>
+            <button class="btn-o" style="height: 40px; padding: 0 18px; font-size: 12px; background: #bdaba2; color: #21201f" onClick="{{r.grant}}">Grant</button>
+          </div>
+        </sc-for>
+        <sc-if value="{{noRequests}}" hint-placeholder-val="{{false}}"><div style="padding: 32px 0; border-top: 1px solid rgba(246,241,240,.14); color: rgba(246,241,240,.6)">No pending requests.</div></sc-if>
+      </div>
+    </section>
+
+    <!-- Recently updated -->
+    <section class="pad" style="background: #f6f1f0; padding: 88px 96px">
+      <div class="wrapm" style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 28px; flex-wrap: wrap; gap: 16px">
+        <div style="display: flex; flex-direction: column; gap: 14px">
+          <span class="eyebrow" style="color: #8a7568">Documents</span>
+          <h2 class="h2" style="margin: 0; font-size: 44px; font-weight: 700; line-height: 1.1">Recently updated</h2>
+        </div>
+        <button class="btn-d" onClick="{{goDocs}}">All documents</button>
+      </div>
+      <div style="display: flex; flex-direction: column; border-bottom: 1px solid rgba(33,32,31,.12)">
+        <sc-for list="{{recent}}" as="d" hint-placeholder-count="7">
+          <button class="row" onClick="{{d.go}}">
+            <span style="width: 56px; font-size: 11px; letter-spacing: .1em; color: #8a7568">{{d.type}}</span>
+            <span style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 4px">
+              <span style="font-size: 17px; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">{{d.name}}</span>
+              <span style="font-size: 13px; color: rgba(33,32,31,.6)">{{d.platform}} · {{d.entity}} · {{d.folder}}</span>
+            </span>
+            <span class="tag" style="color: {{d.clsColor}}">{{d.cls}}</span>
+            <span class="hide-m" style="width: 110px; text-align: right; font-size: 13px; color: rgba(33,32,31,.6)">{{d.at}}</span>
+          </button>
+        </sc-for>
+      </div>
+    </section>
+
+    <!-- Footer / audit -->
+    <footer class="pad g2" style="background: #21201f; color: #f6f1f0; padding: 72px 96px 48px 96px; display: grid; grid-template-columns: 1fr 1.4fr; gap: 64px">
+      <div style="display: flex; flex-direction: column; gap: 14px">
+        <img src="/_blob/d229a5977cc70d22a936e031c415c624" alt="SANAM" style="height: 30px; width: auto; display: block; align-self: flex-start">
+        <span class="eyebrow" style="color: #bdaba2; margin-top: 6px">Group Holding · Executive Portal</span>
+        <p style="margin: 14px 0 0 0; font-size: 13px; color: rgba(246,241,240,.55); line-height: 1.6; max-width: 360px">Kuwait City, Kuwait<br>© 2026 SANAM Group Holding K.S.C.P. Internal use only.</p>
+      </div>
+      <div style="display: flex; flex-direction: column">
+        <span class="eyebrow" style="color: #bdaba2; margin-bottom: 8px">Recent activity</span>
+        <sc-for list="{{auditShort}}" as="a" hint-placeholder-count="5">
+          <div style="display: flex; gap: 20px; padding: 12px 0; border-top: 1px solid rgba(246,241,240,.12); font-size: 13px"><span style="width: 150px; color: rgba(246,241,240,.5)">{{a.ts}}</span><span style="color: rgba(246,241,240,.85)">{{a.ev}}</span></div>
+        </sc-for>
+        <button class="crumb" style="margin-top: 16px; width: fit-content" onClick="{{goAudit}}">Audit trail →</button>
+      </div>
+    </footer>
+  </div>
+  </sc-if>
+
+  <!-- ================= PLATFORM ================= -->
+  <sc-if value="{{isPlatform}}" hint-placeholder-val="{{false}}">
+  <div class="fade">
+    <section class="hero2" style="position: relative; height: 560px; overflow: hidden; background: {{plat.fallback}}">
+      <div style="position: absolute; inset: 0; background-image: url({{plat.hero}}); background-size: cover; background-position: center; filter: brightness(.42)"></div>
+      <sc-if value="{{plat.hasBrand}}" hint-placeholder-val="{{false}}"><img src="{{plat.brand}}" alt="" style="position: absolute; right: 96px; top: 120px; width: 320px; height: auto; opacity: .85"></sc-if>
+      <div style="position: relative; height: 100%; display: flex; flex-direction: column; justify-content: flex-end; padding: 0 96px 64px 96px; gap: 16px; color: #f6f1f0" class="heropad">
+        <div style="display: flex; gap: 10px; align-items: center"><button class="crumb" onClick="{{goHome}}">Corporate</button><span style="color: #bdaba2">/</span><span class="crumb" style="color: #f6f1f0">{{plat.name}}</span></div>
+        <h1 class="h1" style="margin: 0; font-size: 64px; font-weight: 700; line-height: 1.02">{{plat.name}}</h1>
+        <p style="margin: 0; font-size: 18px; color: rgba(246,241,240,.8); max-width: 640px">{{plat.thesis}}</p>
+        <span class="eyebrow" style="color: #bdaba2">{{plat.countLabel}}</span>
+      </div>
+    </section>
+    <section class="pad" style="background: #fff; padding: 88px 96px">
+      <div style="display: flex; flex-direction: column; gap: 14px; margin-bottom: 36px">
+        <span class="eyebrow" style="color: #8a7568">Entities</span>
+        <h2 class="h2" style="margin: 0; font-size: 40px; font-weight: 700">Companies under {{plat.name}}</h2>
+      </div>
+      <div class="g3" style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px">
+        <sc-for list="{{plat.entities}}" as="e" hint-placeholder-count="4">
+          <button class="card h400" style="height: 400px; width: 100%" onClick="{{e.go}}" aria-label="{{e.name}}">
+            <div class="img" style="background-image: url({{e.img}}); background-color: {{e.fallback}}"></div>
+            <div class="veil"></div>
+            <sc-if value="{{e.hasLogo}}" hint-placeholder-val="{{false}}"><img src="{{e.logo}}" alt="" style="position: absolute; top: 22px; left: 24px; height: 34px; width: auto; max-width: 150px; object-fit: contain; filter: drop-shadow(0 2px 6px rgba(0,0,0,.5))"></sc-if>
+            <div class="body">
+              <span class="eyebrow" style="color: #bdaba2">{{e.kind}}{{e.placeLabel}}</span>
+              <span style="font-size: 26px; font-weight: 700; line-height: 1.15; margin-top: 8px">{{e.name}}</span>
+              <span style="font-size: 13px; color: rgba(255,255,255,.8); margin-top: 8px">{{e.docLabel}}{{e.childLabel}}</span>
+              <span class="btn-w" style="display: inline-flex; align-items: center; width: fit-content; margin-top: 16px">Learn more</span>
+            </div>
+          </button>
+        </sc-for>
+      </div>
+    </section>
+  </div>
+  </sc-if>
+
+  <!-- ================= ENTITY ================= -->
+  <sc-if value="{{isEntity}}" hint-placeholder-val="{{false}}">
+  <div class="fade">
+    <section class="hero2" style="position: relative; height: 560px; overflow: hidden; background: {{ent.fallback}}">
+      <div style="position: absolute; inset: 0; background-image: url({{ent.img}}); background-size: cover; background-position: center; filter: brightness(.42)"></div>
+      <div style="position: relative; height: 100%; display: flex; flex-direction: column; justify-content: flex-end; padding: 0 96px 64px 96px; gap: 16px; color: #f6f1f0" class="heropad">
+        <div style="display: flex; gap: 10px; align-items: center"><button class="crumb" onClick="{{goHome}}">Corporate</button><span style="color: #bdaba2">/</span><button class="crumb" onClick="{{crumb.goP}}">{{crumb.p}}</button><span style="color: #bdaba2">/</span><span class="crumb" style="color: #f6f1f0">{{ent.name}}</span></div>
+        <sc-if value="{{ent.hasLogo}}" hint-placeholder-val="{{false}}"><img src="{{ent.logo}}" alt="" style="height: 56px; width: auto; max-width: 240px; object-fit: contain; object-position: left; margin-bottom: 6px; filter: drop-shadow(0 2px 8px rgba(0,0,0,.5))"></sc-if>
+        <h1 class="h1" style="margin: 0; font-size: 56px; font-weight: 700; line-height: 1.05; max-width: 900px">{{ent.name}}</h1>
+        <p style="margin: 0; font-size: 18px; color: rgba(246,241,240,.8)">{{ent.kind}}{{ent.placeLabel}}{{ent.parentLabel}} · Owner access</p>
+        <div class="wrapm" style="display: flex; align-items: flex-end; justify-content: space-between; margin-top: 8px; flex-wrap: wrap; gap: 16px">
+          <div style="display: flex; gap: 40px">
+            <span style="display: flex; flex-direction: column"><span style="font-size: 30px; font-weight: 700">{{ent.docCount}}</span><span class="eyebrow" style="color: #bdaba2">Documents</span></span>
+            <span style="display: flex; flex-direction: column"><span style="font-size: 30px; font-weight: 700">{{ent.newest}}</span><span class="eyebrow" style="color: #bdaba2">Last update</span></span>
+            <span style="display: flex; flex-direction: column"><span style="font-size: 30px; font-weight: 700">{{ent.restricted}}</span><span class="eyebrow" style="color: #bdaba2">Restricted</span></span>
+          </div>
+          <div style="display: flex; gap: 12px">
+            <button class="btn-o" onClick="{{ent.goBudget}}">Budget view</button>
+            <button class="btn-o" style="border-color: rgba(246,241,240,.5); color: #f6f1f0" onClick="{{goDocs}}">Upload here</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <sc-if value="{{ent.hasChildren}}" hint-placeholder-val="{{false}}">
+    <section class="pad" style="background: #21201f; color: #f6f1f0; padding: 72px 96px">
+      <div style="display: flex; flex-direction: column; gap: 12px; margin-bottom: 28px"><span class="eyebrow" style="color: #bdaba2">{{ent.name}}</span><h2 class="h2" style="margin: 0; font-size: 36px; font-weight: 700">{{ent.assetLabel}}</h2></div>
+      <div class="hscroll">
+        <sc-for list="{{ent.children}}" as="k" hint-placeholder-count="3">
+          <button class="card" style="width: 300px; height: 380px" onClick="{{k.go}}" aria-label="{{k.name}}">
+            <div class="img" style="background-image: url({{k.img}}); background-color: {{k.fallback}}"></div>
+            <div class="veil"></div>
+            <div class="body"><span class="eyebrow" style="color: #bdaba2">{{k.kind}}</span><span style="font-size: 24px; font-weight: 700; margin-top: 8px; line-height: 1.15">{{k.name}}</span><span style="font-size: 13px; color: rgba(255,255,255,.8); margin-top: 8px">{{k.docLabel}}</span></div>
+          </button>
+        </sc-for>
+      </div>
+    </section>
+    </sc-if>
+
+    <section class="pad" style="background: #f6f1f0; padding: 88px 96px">
+      <div style="display: flex; flex-direction: column; gap: 12px; margin-bottom: 32px"><span class="eyebrow" style="color: #8a7568">{{ent.name}}</span><h2 class="h2" style="margin: 0; font-size: 40px; font-weight: 700">Folders</h2></div>
+      <div class="g4" style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 20px">
+        <sc-for list="{{ent.folders}}" as="f" hint-placeholder-count="4">
+          <button class="fold" onClick="{{f.go}}">
+            <span style="display: flex; justify-content: space-between; align-items: flex-start"><span style="width: 44px; height: 44px; border: 1px solid currentColor; border-radius: 6px; display: flex; align-items: center; justify-content: center; opacity: .8"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg></span><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+            <span style="display: flex; flex-direction: column; gap: 8px"><span style="font-size: 20px; font-weight: 700">{{f.name}}</span><span class="k" style="font-size: 13px; line-height: 1.5">{{f.desc}}</span></span>
+          </button>
+        </sc-for>
+      </div>
+    </section>
+
+    <section class="pad" style="background: #fff; padding: 88px 96px">
+      <div class="wrapm" style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 28px; flex-wrap: wrap; gap: 16px">
+        <div style="display: flex; flex-direction: column; gap: 12px"><span class="eyebrow" style="color: #8a7568">{{ent.docCount}} documents</span><h2 class="h2" style="margin: 0; font-size: 40px; font-weight: 700">Recent documents</h2></div>
+        <button class="btn-d" onClick="{{goDocs}}">All documents</button>
+      </div>
+      <div style="display: flex; flex-direction: column; border-bottom: 1px solid rgba(33,32,31,.12)">
+        <sc-for list="{{ent.recent}}" as="d" hint-placeholder-count="6">
+          <button class="row" onClick="{{d.go}}">
+            <span style="width: 56px; font-size: 11px; letter-spacing: .1em; color: #8a7568">{{d.type}}</span>
+            <span style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 4px"><span style="font-size: 17px; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">{{d.name}}</span><span style="font-size: 13px; color: rgba(33,32,31,.6)">{{d.folder}} · {{d.size}}</span></span>
+            <span class="tag" style="color: {{d.clsColor}}">{{d.cls}}</span>
+            <span class="hide-m" style="width: 110px; text-align: right; font-size: 13px; color: rgba(33,32,31,.6)">{{d.at}}</span>
+          </button>
+        </sc-for>
+      </div>
+    </section>
+  </div>
+  </sc-if>
+
+  <!-- ================= FOLDER ================= -->
+  <sc-if value="{{isFolder}}" hint-placeholder-val="{{false}}">
+  <div class="fade">
+    <section class="pad" style="background: #21201f; color: #f6f1f0; padding: 96px 96px 64px 96px; display: flex; flex-direction: column; gap: 16px">
+      <div style="display: flex; gap: 10px; align-items: center"><button class="crumb" onClick="{{goHome}}">Corporate</button><span style="color: #bdaba2">/</span><button class="crumb" onClick="{{crumb.goP}}">{{crumb.p}}</button><span style="color: #bdaba2">/</span><button class="crumb" onClick="{{crumb.goE}}">{{crumb.e}}</button><span style="color: #bdaba2">/</span><span class="crumb" style="color: #f6f1f0">{{fold.name}}</span></div>
+      <h1 class="h1" style="margin: 0; font-size: 56px; font-weight: 700; line-height: 1.05">{{fold.name}}</h1>
+      <p style="margin: 0; font-size: 18px; color: rgba(246,241,240,.75); max-width: 640px">{{fold.desc}}</p>
+      <div style="display: flex; gap: 14px; margin-top: 8px"><button class="btn-o" onClick="{{goDocs}}">Upload to this folder</button><button class="btn-o" style="border-color: rgba(246,241,240,.5); color: #f6f1f0" onClick="{{goEntityBack}}">Back to {{fold.entity}}</button></div>
+    </section>
+    <section class="pad" style="background: #fff; padding: 56px 96px 96px 96px">
+      <div style="display: grid; grid-template-columns: 60px 1fr 170px 130px 120px 90px; gap: 18px; padding: 0 0 14px 0" class="eyebrow tbl">
+        <span style="color: #8a7568">Type</span><span style="color: #8a7568">Document</span><span style="color: #8a7568">Uploaded by</span><span style="color: #8a7568">Classification</span><span style="color: #8a7568">Updated</span><span style="color: #8a7568; text-align: right">Size</span>
+      </div>
+      <div style="display: flex; flex-direction: column; border-bottom: 1px solid rgba(33,32,31,.12)">
+        <sc-for list="{{fold.docs}}" as="d" hint-placeholder-count="4">
+          <button class="row tbl" style="display: grid; grid-template-columns: 60px 1fr 170px 130px 120px 90px; gap: 18px" onClick="{{d.pin}}">
+            <span style="font-size: 11px; letter-spacing: .1em; color: #8a7568">{{d.type}}</span>
+            <span style="display: flex; align-items: baseline; gap: 10px; min-width: 0"><span style="font-size: 17px; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">{{d.name}}</span><span style="font-size: 11px; color: #8a7568">{{d.ver}}</span></span>
+            <span style="font-size: 13px; color: rgba(33,32,31,.7)">{{d.by}}</span>
+            <span><span class="tag" style="color: {{d.clsColor}}">{{d.cls}}</span></span>
+            <span style="font-size: 13px; color: rgba(33,32,31,.6)">{{d.at}}</span>
+            <span style="font-size: 13px; color: rgba(33,32,31,.6); text-align: right">{{d.size}}</span>
+          </button>
+        </sc-for>
+      </div>
+    </section>
+  </div>
+  </sc-if>
+
+  <!-- ================= ALL DOCUMENTS ================= -->
+  <sc-if value="{{isDocs}}" hint-placeholder-val="{{false}}">
+  <div class="fade">
+    <section class="pad" style="background: #21201f; color: #f6f1f0; padding: 96px 96px 56px 96px; display: flex; flex-direction: column; gap: 20px">
+      <span class="eyebrow" style="color: #bdaba2">Documents</span>
+      <h1 class="h1" style="margin: 0; font-size: 56px; font-weight: 700; line-height: 1.05">All documents</h1>
+      <div style="position: relative; max-width: 720px; margin-top: 8px">
+        <svg style="position: absolute; left: 0; top: 14px" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#bdaba2" stroke-width="1.8"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
+        <label for="q" style="position: absolute; left: -9999px">Search documents</label>
+        <input id="q" class="search" type="search" placeholder="Search documents" value="{{query}}" onChange="{{onQuery}}" onInput="{{onQuery}}">
+      </div>
+      <span style="font-size: 13px; color: rgba(246,241,240,.6)">{{docsFiltered.length}} of {{stats.docs}} shown</span>
+    </section>
+    <section class="pad" style="background: #f6f1f0; padding: 40px 96px 96px 96px">
+      <div style="display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin-bottom: 28px">
+        <sc-for list="{{platChips}}" as="c" hint-placeholder-count="5"><button class="chip {{c.cls}}" onClick="{{c.go}}">{{c.label}}</button></sc-for>
+        <span style="width: 1px; height: 24px; background: rgba(33,32,31,.25); margin: 0 10px"></span>
+        <sc-for list="{{folderChips}}" as="c" hint-placeholder-count="5"><button class="chip {{c.cls}}" onClick="{{c.go}}">{{c.label}}</button></sc-for>
+      </div>
+      <div style="display: flex; flex-direction: column; border-bottom: 1px solid rgba(33,32,31,.12)">
+        <sc-for list="{{docsFiltered}}" as="d" hint-placeholder-count="8">
+          <button class="row" onClick="{{d.go}}">
+            <span style="width: 56px; font-size: 11px; letter-spacing: .1em; color: #8a7568">{{d.type}}</span>
+            <span style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 4px"><span style="font-size: 17px; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">{{d.name}}</span><span style="font-size: 13px; color: rgba(33,32,31,.6)">{{d.platform}} · {{d.entity}} · {{d.folder}}</span></span>
+            <span class="hide-m" style="width: 160px; font-size: 13px; color: rgba(33,32,31,.7)">{{d.by}}</span>
+            <span class="tag" style="color: {{d.clsColor}}">{{d.cls}}</span>
+            <span class="hide-m" style="width: 110px; text-align: right; font-size: 13px; color: rgba(33,32,31,.6)">{{d.at}}</span>
+          </button>
+        </sc-for>
+        <sc-if value="{{noDocs}}" hint-placeholder-val="{{false}}"><div style="padding: 48px 0; color: rgba(33,32,31,.6)">No results.</div></sc-if>
+      </div>
+    </section>
+  </div>
+  </sc-if>
+
+  <!-- ================= STRUCTURE ================= -->
+  <sc-if value="{{isMap}}" hint-placeholder-val="{{false}}">
+  <div class="fade">
+    <section class="pad" style="background: #21201f; color: #f6f1f0; padding: 96px 96px 64px 96px; display: flex; flex-direction: column; gap: 16px">
+      <span class="eyebrow" style="color: #bdaba2">4 platforms · {{stats.ents}} entities · 7 properties</span>
+      <h1 class="h1" style="margin: 0; font-size: 56px; font-weight: 700; line-height: 1.05">Group structure</h1>
+          </section>
+    <section class="pad" style="background: #21201f; color: #f6f1f0; padding: 0 96px 96px 96px">
+      <div class="org">
+        <div class="org-root">
+          <img src="/_blob/2d76f1898068522113aca8b181a2022b" alt="SANAM" style="height: 40px; width: auto">
+          <span class="eyebrow" style="color: #8a7568">Corporate · SANAM Group Holding</span>
+        </div>
+        <div class="org-stem"></div>
+        <div class="org-cols">
+          <sc-for list="{{platforms}}" as="p" hint-placeholder-count="4">
+            <div class="org-col">
+              <button class="org-plat" onClick="{{p.go}}" aria-label="{{p.name}}">
+                <div class="img" style="background-image: url({{p.hero}}); background-color: {{p.fallback}}"></div>
+                <div class="body"><span class="eyebrow" style="color: #bdaba2">Platform · {{p.countLabel}}</span><span style="font-size: 22px; font-weight: 700; margin-top: 4px">{{p.name}}</span></div>
+              </button>
+              <div class="org-list">
+                <sc-for list="{{p.entities}}" as="e" hint-placeholder-count="4">
+                  <div style="display: flex; flex-direction: column">
+                    <button class="org-node" onClick="{{e.go}}">
+                      <span class="thumb" style="background-image: url({{e.img}}); background-color: {{e.fallback}}"></span>
+                      <span style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px"><span style="font-size: 13.5px; font-weight: 700; line-height: 1.2">{{e.name}}</span><span class="sub">{{e.kind}}{{e.placeLabel}}</span></span>
+                    </button>
+                    <sc-if value="{{e.hasKids}}" hint-placeholder-val="{{false}}">
+                      <div class="org-list org-sub">
+                        <sc-for list="{{e.kids}}" as="k" hint-placeholder-count="3">
+                          <button class="org-node" onClick="{{k.go}}">
+                            <span class="thumb" style="background-image: url({{k.img}}); background-color: {{k.fallback}}"></span>
+                            <span style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px"><span style="font-size: 12.5px; font-weight: 700; line-height: 1.2">{{k.name}}</span><span class="sub">{{k.kind}}</span></span>
+                          </button>
+                        </sc-for>
+                      </div>
+                    </sc-if>
+                  </div>
+                </sc-for>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+    </section>
+  </div>
+  </sc-if>
+
+  <!-- ================= BUDGET ================= -->
+  <sc-if value="{{isBudget}}" hint-placeholder-val="{{false}}">
+  <div class="fade">
+    <section class="pad" style="background: #21201f; color: #f6f1f0; padding: 96px 96px 56px 96px; display: flex; flex-direction: column; gap: 16px">
+      <span class="eyebrow" style="color: #bdaba2">Budget · FY2026 · KWD · {{budget.scopeLabel}}</span>
+      <sc-if value="{{budget.hasLogo}}" hint-placeholder-val="{{false}}"><img src="{{budget.logo}}" alt="" style="height: 44px; width: auto; max-width: 200px; object-fit: contain; object-position: left"></sc-if>
+      <h1 class="h1" style="margin: 0; font-size: 56px; font-weight: 700; line-height: 1.05">{{budget.title}}</h1>
+      <div style="display: flex; align-items: center; gap: 14px; margin-top: 6px; flex-wrap: wrap">
+        <label for="bent" class="eyebrow" style="color: rgba(246,241,240,.6)">Entity</label>
+        <select id="bent" value="{{budget.sel}}" onChange="{{budget.onSel}}" style="height: 44px; min-width: 360px; background: transparent; color: #f6f1f0; border: 1px solid #bdaba2; padding: 0 14px; font: inherit; font-size: 14px">
+          <sc-for list="{{budget.options}}" as="o" hint-placeholder-count="23"><option value="{{o.id}}">{{o.label}}</option></sc-for>
+        </select>
+        <sc-if value="{{budget.isEntity}}" hint-placeholder-val="{{false}}"><button class="btn-o" style="height: 44px" onClick="{{budget.goEntity}}">Open entity</button><button class="btn-o" style="height: 44px; border-color: rgba(246,241,240,.5); color: #f6f1f0" onClick="{{budget.goGroup}}">Back to group</button></sc-if>
+      </div>
+    </section>
+    <section class="pad g4" style="background: #f6f1f0; padding: 64px 96px; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 24px">
+      <sc-for list="{{budget.tiles}}" as="t" hint-placeholder-count="4">
+        <div style="display: flex; flex-direction: column; gap: 8px; padding-top: 18px; border-top: 2px solid #21201f">
+          <span class="eyebrow" style="color: #8a7568">{{t.label}}</span>
+          <span style="font-size: 34px; font-weight: 700">{{t.value}}</span>
+          <span style="font-size: 13px; color: {{t.deltaColor}}">{{t.delta}}</span>
+        </div>
+      </sc-for>
+    </section>
+    <section class="pad g2" style="background: #fff; padding: 72px 96px 96px 96px; display: grid; grid-template-columns: 1.4fr 1fr; gap: 64px">
+      <div>
+        <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 24px">
+          <h2 style="margin: 0; font-size: 28px; font-weight: 700">By month</h2>
+          <span style="display: flex; gap: 18px; font-size: 12px; color: rgba(33,32,31,.7)"><span style="display: inline-flex; align-items: center; gap: 6px"><span style="width: 10px; height: 10px; background: #bdaba2"></span>Budget</span><span style="display: inline-flex; align-items: center; gap: 6px"><span style="width: 10px; height: 10px; background: #21201f"></span>Actual</span></span>
+        </div>
+        <div class="bars" style="display: flex; align-items: flex-end; gap: 18px; height: 260px; border-bottom: 1px solid rgba(33,32,31,.25); min-width: 0">
+          <sc-for list="{{budget.months}}" as="m" hint-placeholder-count="9">
+            <div style="flex: 1; min-width: 0; display: flex; flex-direction: column; align-items: center; gap: 8px; height: 100%; justify-content: flex-end">
+              <div style="display: flex; gap: 4px; align-items: flex-end; height: 220px">
+                <div class="bar" title="Budget {{m.b}}" style="width: 18px; height: {{m.bh}}px; background: #bdaba2"></div>
+                <div class="bar" title="Actual {{m.a}}" style="width: 18px; height: {{m.ah}}px; background: #21201f"></div>
+              </div>
+              <span style="font-size: 11px; letter-spacing: .08em; color: rgba(33,32,31,.6)">{{m.label}}</span>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+      <div style="display: flex; flex-direction: column; gap: 22px">
+        <h2 style="margin: 0; font-size: 28px; font-weight: 700">{{budget.breakdownTitle}}</h2>
+        <sc-for list="{{budget.byPlatform}}" as="p" hint-placeholder-count="4">
+          <div style="display: flex; flex-direction: column; gap: 8px">
+            <div style="display: flex; justify-content: space-between; font-size: 15px"><span style="font-weight: 700">{{p.name}}</span><span style="color: {{p.varColor}}">{{p.var}}</span></div>
+            <div style="position: relative; height: 8px; background: rgba(33,32,31,.08)">
+              <div style="position: absolute; left: 0; top: 0; bottom: 0; width: {{p.bw}}%; background: #bdaba2"></div>
+              <div style="position: absolute; left: 0; top: 0; bottom: 0; width: {{p.aw}}%; background: #21201f; height: 4px"></div>
+            </div>
+            <div style="display: flex; justify-content: space-between; font-size: 12px; color: rgba(33,32,31,.6)"><span>Budget {{p.b}}</span><span>Actual {{p.a}}</span></div>
+          </div>
+        </sc-for>
+      </div>
+    </section>
+    <sc-if value="{{budget.isGroup}}" hint-placeholder-val="{{true}}">
+    <section class="pad" style="background: #fff; padding: 0 96px 96px 96px">
+      <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 20px"><h2 style="margin: 0; font-size: 28px; font-weight: 700">By entity</h2><span style="font-size: 13px; color: rgba(33,32,31,.6)">Actual vs budget · YTD</span></div>
+      <div class="g4" style="display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; padding-bottom: 0">
+        <sc-for list="{{budget.entityTiles}}" as="t" hint-placeholder-count="22">
+          <button class="row" style="border: 1px solid rgba(33,32,31,.12); padding: 14px 16px; gap: 12px; border-radius: 6px" onClick="{{t.go}}">
+            <span style="width: 40px; height: 40px; flex: 0 0 40px; background-image: url({{t.img}}); background-color: {{t.fallback}}; background-size: cover; background-position: center; border-radius: 4px"></span>
+            <span style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px"><span style="font-size: 13px; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis">{{t.name}}</span><span style="font-size: 11px; color: rgba(33,32,31,.55)">Actual {{t.a}} · Budget {{t.b}}</span></span>
+            <span style="font-size: 12px; font-weight: 700; color: {{t.varColor}}">{{t.var}}</span>
+          </button>
+        </sc-for>
+      </div>
+    </section>
+    </sc-if>
+  </div>
+  </sc-if>
+
+  <!-- ================= ACCESS ================= -->
+  <sc-if value="{{isAccess}}" hint-placeholder-val="{{false}}">
+  <div class="fade">
+    <section class="pad" style="background: #21201f; color: #f6f1f0; padding: 96px 96px 56px 96px; display: flex; flex-direction: column; gap: 16px">
+      <span class="eyebrow" style="color: #bdaba2">Access control</span>
+      <h1 class="h1" style="margin: 0; font-size: 56px; font-weight: 700; line-height: 1.05">Grant matrix</h1>
+    </section>
+    <section class="pad" style="background: #fff; padding: 56px 96px 96px 96px">
+      <div style="display: grid; grid-template-columns: 320px repeat(4, minmax(0, 1fr)); gap: 10px; padding-bottom: 14px" class="eyebrow mtx">
+        <span style="color: #8a7568">Role</span><span style="color: #8a7568; text-align: center">Industrial</span><span style="color: #8a7568; text-align: center">Education</span><span style="color: #8a7568; text-align: center">Healthcare</span><span style="color: #8a7568; text-align: center">Real Estate</span>
+      </div>
+      <sc-for list="{{roles}}" as="r" hint-placeholder-count="10">
+        <div class="mtx" style="display: grid; grid-template-columns: 320px repeat(4, minmax(0, 1fr)); gap: 10px; padding: 12px 0; border-top: 1px solid rgba(33,32,31,.12); align-items: center">
+          <span style="display: flex; flex-direction: column; gap: 3px"><span style="font-size: 16px; font-weight: 700">{{r.name}}</span><span style="font-size: 12px; color: rgba(33,32,31,.6)">{{r.who}}{{r.extra}}</span></span>
+          <sc-for list="{{r.cells}}" as="c" hint-placeholder-count="4"><span class="cell" style="background: {{c.bg}}; color: {{c.fg}}; border: 1px {{c.border}} {{c.line}}" title="{{c.title}}">{{c.label}}</span></sc-for>
+        </div>
+      </sc-for>
+    </section>
+  </div>
+  </sc-if>
+
+  <!-- ================= PEOPLE ================= -->
+  <sc-if value="{{isPeople}}" hint-placeholder-val="{{false}}">
+  <div class="fade">
+    <section class="pad" style="background: #21201f; color: #f6f1f0; padding: 96px 96px 56px 96px; display: flex; flex-direction: column; gap: 16px">
+      <span class="eyebrow" style="color: #bdaba2">People</span>
+      <h1 class="h1" style="margin: 0; font-size: 56px; font-weight: 700; line-height: 1.05">Roles</h1>
+    </section>
+    <section class="pad g3" style="background: #f6f1f0; padding: 64px 96px 96px 96px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px">
+      <sc-for list="{{roles}}" as="r" hint-placeholder-count="10">
+        <div style="display: flex; flex-direction: column; gap: 10px; padding-top: 18px; border-top: 2px solid #21201f">
+          <div style="display: flex; justify-content: space-between; align-items: center; gap: 10px"><span style="font-size: 20px; font-weight: 700">{{r.name}}</span><span class="tag" style="color: #8a7568">{{r.dfltLabel}}</span></div>
+          <span style="font-size: 14px; color: rgba(33,32,31,.75)">{{r.who}}</span>
+          <span style="font-size: 12px; color: rgba(33,32,31,.55)">{{r.short}}{{r.extra}}</span>
+        </div>
+      </sc-for>
+    </section>
+  </div>
+  </sc-if>
+
+  <!-- ================= AUDIT ================= -->
+  <sc-if value="{{isAudit}}" hint-placeholder-val="{{false}}">
+  <div class="fade">
+    <section class="pad" style="background: #21201f; color: #f6f1f0; padding: 96px 96px 56px 96px; display: flex; flex-direction: column; gap: 16px">
+      <span class="eyebrow" style="color: #bdaba2">Audit trail</span>
+      <h1 class="h1" style="margin: 0; font-size: 56px; font-weight: 700; line-height: 1.05">Activity log</h1>
+    </section>
+    <section class="pad" style="background: #fff; padding: 40px 96px 96px 96px; display: flex; flex-direction: column; border-bottom: 1px solid rgba(33,32,31,.12)">
+      <sc-for list="{{audit}}" as="a" hint-placeholder-count="8">
+        <div style="display: flex; gap: 24px; padding: 18px 0; border-top: 1px solid rgba(33,32,31,.12); align-items: center">
+          <span style="width: 170px; font-size: 13px; color: rgba(33,32,31,.55)">{{a.ts}}</span>
+          <span style="flex: 1; font-size: 16px">{{a.ev}}</span>
+          <span style="font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: #8a7568">{{a.actor}}</span>
+        </div>
+      </sc-for>
+    </section>
+  </div>
+  </sc-if>
+
+</div>
+</x-dc>
+
+<script type="text/x-dc" data-dc-script data-props='{"userName":{"editor":"text","default":"Umair Shahid"},"userRole":{"editor":"enum","default":"Portal Administrator","options":["Portal Administrator","Board &amp; Audit Committee","Investment Committee","Platform Head — Healthcare","Platform Head — Real Estate","Platform Head — Education","Company Management — Spirit","External Auditor (time-boxed)","ESG &amp; Compliance","Pending Assignment"]},"$preview":{"width":1440,"height":900}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { screen: 'home', platform: null, entity: null, folder: null, fp: 'all', ff: 'all', query: '', decided: {}, bEnt: 'group', menu: false };
+  }
+
+  muteAll() {
+    try { document.querySelectorAll('video').forEach(v => { v.muted = true; v.defaultMuted = true; v.volume = 0; if (v.paused) { const p = v.play(); if (p && p.catch) p.catch(() => {}); } }); } catch (e) {}
+  }
+  componentDidMount() { this.muteAll(); this._mt = setInterval(() => this.muteAll(), 1500); }
+  componentDidUpdate() { this.muteAll(); }
+  componentWillUnmount() { if (this._mt) clearInterval(this._mt); }
+
+  data() {
+    if (this._d) return this._d;
+    const B = '/_blob/';
+    const IMG = {
+      abyan: B + 'd8dcc6e50017000e8dec6331f46c74c0', erm: B + 'c930bd6fe3a16259936f86d85f1dc8c3', tia: B + '6ca178b13fb0be5891e906b1d40f4d4a', natmed: B + 'f8bc7fdf752e55dc39867d8d0cbc5c34',
+      madarek_kw: B + 'ba9a63448e203b1c48d0c67a030516b4', madarek_ksa: B + '89438f924cd64f313f89a202a0857054', madarek_uae: B + 'd1d116d9c050d9616aaa2e3b9b4a6982',
+      mgis_dc: B + '0fccec86a1d09162a65bb387e6739aa2', mgis_qortuba: B + 'be771f1d3ae7dc3c8f670f3410f21cc2', mgis_izdihar: B + '5ab591ebc8b9c69125c7b5708092bdf0',
+      maaref: B + '1b7ba53d88da6f1b7abdaa809c2d4571', sharjah_ssc: B + 'eede73c8152390d90c9ae7882b7a9422',
+      spirit: B + '0b49cddc3aaa18544fc107df7fed365a',
+      farwaniya: B + 'b3ba031285a5108c57054c960cf02a5c', bneidalgar: B + 'e9f47dcbd334e42a04fc84cc84b7dfd4', fintas: B + '9ba5b068b89662c4869f9edd0f30c313', durrar: B + '5fd8d127a7a2079415ec46be8a542fdb',
+      ibnkhaldoun: B + 'dd61d2a05d3f30b2451d0d01782696bf', domus: B + 'c8760459eeda51671bd2f2065469fc73', almanar: B + 'e2f84c378515b4c5eec9fac6a8216b3e'
+    };
+    const HERO = { industrial: B + 'dba280b76f37214d7d17feba787f01b6', education: B + '763189123710a20cc23221ee0203b62c', healthcare: '', realestate: B + '5a64839371d0305809397f5d46ec9322' };
+    const BRAND = { healthcare: B + '23cfae18fd404f2bd68130bc93be76ec' };
+    const FALL = { industrial: '#2b3238', education: '#2c2d3e', healthcare: '#243532', realestate: '#3a3027' };
+    const LOGO = {
+      abyan: B + '40cc61d6c23822baf08f7ab738443317', erm: B + '55b79eb1f41ec4f76ddca8cda7f539c6', tia: B + '5feb9ac92ef1098b5b0a05d28324120e', natmed: B + 'bd9dceadd6e30ead15963f2fef60f1fa',
+      madarek_kw: B + 'b57bf8e188fe14e1b33c50610395d8a3', madarek_ksa: B + 'b57bf8e188fe14e1b33c50610395d8a3', madarek_uae: B + 'b57bf8e188fe14e1b33c50610395d8a3',
+      spirit: B + '1619d684c3f590e1f16cf608e37a044d', eradat: B + '27118515dd2edbe3d8a08ad847c7a9f9'
+    };
+    IMG.eradat = B + '5a64839371d0305809397f5d46ec9322';
+
+    const FOLDERS = [
+      { id: 'minutes', name: 'Meeting Minutes', desc: 'Board, committee and shareholder records. Sealed once signed.' },
+      { id: 'od', name: 'OD + Agreements', desc: 'Constitutional documents, licences, SHAs, delegation of authority.' },
+      { id: 'finance', name: 'Finance', desc: 'Audited FS, management accounts, valuation and budget files.' },
+      { id: 'esg', name: 'ESG', desc: 'Boursa Kuwait ESG disclosure, emissions, HSE and Kuwaitisation.' }
+    ];
+    const PLATFORMS = [
+      { id: 'industrial', name: 'Industrial', thesis: 'Construction, ready-mix, aquaculture and industrial services.', companies: [
+        { id: 'abyan', name: 'Abyan Building Construction Company', kind: 'Construction' },
+        { id: 'erm', name: 'European Ready Mix Concrete and Contracting Company', kind: 'Concrete & contracting' },
+        { id: 'tia', name: 'Technical Integrated Aquaculture Company', kind: 'Aquaculture' },
+        { id: 'natmed', name: 'NATMED', kind: 'Portfolio company' } ] },
+      { id: 'education', name: 'Education', thesis: 'K-12 schooling and education management across Kuwait, Saudi Arabia and the UAE.', companies: [
+        { id: 'madarek_kw', name: 'MADAREK Holding', place: 'Kuwait', kind: 'Holding company' },
+        { id: 'madarek_ksa', name: 'MADAREK KSA', place: 'Saudi Arabia', kind: 'Education company', assetLabel: 'Schools', children: [
+          { id: 'mgis_dc', name: 'MGIS DC', kind: 'School' }, { id: 'mgis_qortuba', name: 'MGIS Qortuba', kind: 'School' }, { id: 'mgis_izdihar', name: 'MGIS Izdihar', kind: 'School' } ] },
+        { id: 'madarek_uae', name: 'MADAREK UAE', place: 'UAE', kind: 'Education company', assetLabel: 'Schools', children: [
+          { id: 'maaref', name: 'Maaref American School', kind: 'School' }, { id: 'sharjah_ssc', name: 'Sharjah Sustainable City School', kind: 'School' } ] } ] },
+      { id: 'healthcare', name: 'Healthcare', thesis: 'Clinics and pharmacy operations serving patients across Kuwait.', companies: [
+        { id: 'medbg', name: 'MED BG Clinic', kind: 'Clinic' }, { id: 'germania', name: 'Germania Clinic', kind: 'Clinic' }, { id: 'spirit', name: 'Spirit Healthcare Pharmacies', kind: 'Pharmacies' } ] },
+      { id: 'realestate', name: 'Real Estate', thesis: 'Residential and mixed-use property assets held across Kuwait.', companies: [
+        { id: 'eradat', name: 'Eradat Real Estate', place: 'Kuwait', kind: 'Real estate company', assetLabel: 'Properties', children: [
+          { id: 'farwaniya', name: 'Farwaniya Residential Building', kind: 'Property', asset: true }, { id: 'bneidalgar', name: 'Bneid Al Gar Building', kind: 'Property', asset: true }, { id: 'fintas', name: 'Fintas Complex', kind: 'Property', asset: true },
+          { id: 'durrar', name: 'Durrar Complex', kind: 'Property', asset: true }, { id: 'ibnkhaldoun', name: 'Ibn Khaldoun Complex', kind: 'Property', asset: true }, { id: 'domus', name: 'Domus 1 & 2', kind: 'Property', asset: true }, { id: 'almanar', name: 'Al Manar Complex', kind: 'Property', asset: true } ] } ] }
+    ];
+    const ROLES = [
+      { id: 'pending', name: 'Pending Assignment', short: 'Pending', dflt: 'none', who: 'Signed in, awaiting a role' },
+      { id: 'admin', name: 'Portal Administrator', short: 'Admin', dflt: 'owner', who: 'IT & Corporate Secretariat' },
+      { id: 'board', name: 'Board & Audit Committee', short: 'Board', dflt: 'viewer', who: 'Directors & audit committee' },
+      { id: 'ic', name: 'Investment Committee', short: 'Inv. Cttee', dflt: 'contributor', who: 'Committee members' },
+      { id: 'ph_hc', name: 'Platform Head — Healthcare', short: 'Head · Health', dflt: 'none', scope: { healthcare: 'owner' }, who: 'Healthcare platform leadership' },
+      { id: 'ph_re', name: 'Platform Head — Real Estate', short: 'Head · Property', dflt: 'none', scope: { realestate: 'owner' }, who: 'Real estate platform leadership' },
+      { id: 'ph_ed', name: 'Platform Head — Education', short: 'Head · Educ.', dflt: 'none', scope: { education: 'owner' }, who: 'Education platform leadership' },
+      { id: 'mgmt_sp', name: 'Company Management — Spirit', short: 'Mgmt · Spirit', dflt: 'none', scope: { healthcare: 'contributor' }, who: 'Spirit Healthcare management', extra: ' · scope: Spirit only' },
+      { id: 'auditor', name: 'External Auditor (time-boxed)', short: 'Auditor', dflt: 'viewer', who: 'External audit engagement team', extra: ' · Finance, OD · no download · expires 31 Oct 2026' },
+      { id: 'esg', name: 'ESG & Compliance', short: 'ESG', dflt: 'viewer', who: 'ESG & compliance officers', extra: ' · ESG, Minutes' }
+    ];
+    const BASE = {
+      minutes: [['Board Meeting Minutes — 03/2026.docx','DOCX','248 KB','Corporate Secretariat','2026-08-12','Confidential'],['Audit Committee Minutes — Q2 2026.pdf','PDF','412 KB','Corporate Secretariat','2026-07-04','Restricted'],['AGM Resolutions 2026.pdf','PDF','1.1 MB','Corporate Secretariat','2026-03-19','Internal']],
+      od: [['Articles of Association (Amended).pdf','PDF','2.4 MB','Legal','2026-01-08','Internal'],['Commercial Licence — MOCI.pdf','PDF','196 KB','Compliance','2026-02-11','Public']],
+      finance: [['Audited Financial Statements FY2025 — IFRS.pdf','PDF','5.2 MB','External Auditor','2026-03-31','Confidential'],['Management Accounts — Jul 2026.xlsx','XLSX','740 KB','Finance','2026-08-09','Confidential'],['Budget FY2027 — Board Draft.xlsx','XLSX','512 KB','Finance','2026-09-01','Restricted']],
+      esg: [['ESG Disclosure — Boursa Kuwait Template.pdf','PDF','2.9 MB','ESG & Compliance','2026-06-30','Public'],['Scope 1 & 2 Emissions Inventory 2025.xlsx','XLSX','318 KB','ESG & Compliance','2026-05-14','Internal'],['HSE Incident Register — YTD 2026.xlsx','XLSX','122 KB','HSE Officer','2026-09-02','Internal']]
+    };
+    const BYKIND = {
+      'Construction': { od: [['Kuwait Municipality Contractor Classification.pdf','PDF','840 KB','Compliance','2026-04-22','Internal']], finance: [['Contract WIP & Retention Schedule.xlsx','XLSX','460 KB','Finance','2026-08-28','Confidential']] },
+      'Concrete & contracting': { od: [['Ready-Mix Plant Environmental Permit — EPA.pdf','PDF','1.2 MB','Compliance','2026-02-27','Internal']], finance: [['Batching Volume & Margin Analysis — H1 2026.xlsx','XLSX','388 KB','Finance','2026-07-30','Confidential']] },
+      'Aquaculture': { od: [['PAAFR Aquaculture Licence.pdf','PDF','520 KB','Compliance','2026-01-30','Internal']], finance: [['Biomass & Feed Conversion Report — Q2 2026.xlsx','XLSX','266 KB','Operations','2026-07-16','Internal']] },
+      'Portfolio company': { finance: [['Shareholder Loan Schedule.xlsx','XLSX','142 KB','Finance','2026-06-11','Restricted']] },
+      'Holding company': { od: [['Shareholders Agreement — Execution Copy.pdf','PDF','3.8 MB','Legal','2025-11-22','Restricted'],['Delegation of Authority Matrix v2.1.xlsx','XLSX','86 KB','Corporate Secretariat','2026-04-30','Confidential']] },
+      'Education company': { od: [['Group Education Licence — Regulator File.pdf','PDF','1.4 MB','Compliance','2026-03-05','Internal']], finance: [['Consolidated Enrolment & Fee Model.xlsx','XLSX','920 KB','Finance','2026-09-03','Confidential']] },
+      'School': { od: [['Ministry of Education Licence — Campus.pdf','PDF','680 KB','Compliance','2026-02-18','Internal']], finance: [['Enrolment & Fee Collection — Term 1 2026/27.xlsx','XLSX','404 KB','School Finance','2026-09-06','Confidential']], esg: [['Safeguarding & Child Protection Policy.pdf','PDF','310 KB','Compliance','2026-05-29','Internal']] },
+      'Clinic': { od: [['MOH Facility Licence.pdf','PDF','440 KB','Compliance','2026-03-12','Internal']], finance: [['Payer Reconciliation — MOH & Insurers.xlsx','XLSX','512 KB','Finance','2026-08-21','Confidential']] },
+      'Pharmacies': { od: [['MOH Pharmacy Licences — Branch Schedule.xlsx','XLSX','204 KB','Compliance','2026-06-04','Internal']], finance: [['Branch P&L — Aug 2026.xlsx','XLSX','680 KB','Finance','2026-09-05','Confidential']] },
+      'Real estate company': { od: [['Title Deeds — Kuwait Land Registry (7 properties).pdf','PDF','1.8 MB','Legal','2025-09-15','Restricted'],['Lease Agreements — Tenant Schedule.xlsx','XLSX','230 KB','Property Management','2026-08-31','Confidential']], finance: [['Rent Roll & Collections — Aug 2026.xlsx','XLSX','356 KB','Property Management','2026-09-04','Confidential'],['Portfolio Valuation Report (IFRS 13) — Jun 2026.pdf','PDF','2.6 MB','External Valuer','2026-06-27','Restricted']] }
+    };
+    const hashOf = s => { let h = 0; for (let i = 0; i < s.length; i++) h = (h * 31 + s.charCodeAt(i)) % 9973; return h; };
+    const MON = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+    const fmt = iso => { const d = new Date(iso + 'T00:00:00Z'); return d.getUTCDate() + ' ' + MON[d.getUTCMonth()] + ' ' + d.getUTCFullYear(); };
+    const shift = (iso, days) => { const d = new Date(iso + 'T00:00:00Z'); d.setUTCDate(d.getUTCDate() - days); return d.toISOString().slice(0, 10); };
+
+    const ENT = {}, docs = [];
+    PLATFORMS.forEach(p => {
+      p.hero = HERO[p.id]; p.fallback = FALL[p.id]; p.brand = BRAND[p.id] || ''; p.hasBrand = !!BRAND[p.id];
+      p.companies.forEach(c => {
+        c.platform = p.id; c.parent = null; c.img = IMG[c.id] || ''; c.logo = LOGO[c.id] || ''; c.hasLogo = !!LOGO[c.id]; c.fallback = FALL[p.id]; ENT[c.id] = c;
+        (c.children || []).forEach(k => { k.platform = p.id; k.parent = c.id; k.img = IMG[k.id] || ''; k.logo = ''; k.hasLogo = false; k.fallback = FALL[p.id]; ENT[k.id] = k; });
+      });
+    });
+    Object.values(ENT).forEach(e => {
+      if (e.asset) return; // properties hold no folders — their records sit on Eradat
+      FOLDERS.forEach(f => {
+        const rows = [...(BASE[f.id] || []), ...(((BYKIND[e.kind] || {})[f.id]) || [])];
+        rows.forEach(([name, type, size, by, iso, cls]) => {
+          const off = (hashOf(e.id + f.id) % 70) + (hashOf(name + e.id) % 11);
+          const at = shift(iso, off);
+          docs.push({ id: e.id + '|' + f.id + '|' + name, entityId: e.id, entity: e.name, platformId: e.platform, folderId: f.id, folder: f.name, name, type, size, by, iso: at, at: fmt(at), cls, ver: 'v1' });
+        });
+      });
+    });
+    docs.sort((a, b) => a.iso < b.iso ? 1 : -1);
+    this._d = { IMG, HERO, LOGO, FOLDERS, PLATFORMS, ROLES, ENT, docs, fmt, hashOf };
+    return this._d;
+  }
+
+  decorate(d) {
+    const C = { Public: '#6b7f75', Internal: '#4d6a8a', Confidential: '#8a7568', Restricted: '#9e3527' };
+    const plat = this.data().PLATFORMS.find(p => p.id === d.platformId);
+    return Object.assign({}, d, { clsColor: C[d.cls] || '#8a7568', platform: plat ? plat.name : '', go: () => this.setState({ screen: 'folder', platform: d.platformId, entity: d.entityId, folder: d.folderId }), pin: () => {} });
+  }
+
+  renderVals() {
+    const D = this.data();
+    const s = this.state;
+    const go = (screen, extra) => () => { this.setState(Object.assign({ screen, menu: false }, extra || {})); try { window.scrollTo({ top: 0, behavior: 'smooth' }); } catch (e) {} };
+
+    const navDefs = [['home', 'Workspace'], ['docs', 'Documents'], ['map', 'Structure'], ['budget', 'Budget'], ['access', 'Access'], ['people', 'People'], ['audit', 'Audit']];
+    const sectionOf = s.screen === 'platform' || s.screen === 'entity' || s.screen === 'folder' ? 'map' : s.screen;
+    const nav = navDefs.map(([id, label]) => ({ id, label, cls: sectionOf === id ? 'on' : '', go: go(id, { platform: null, entity: null, folder: null }) }));
+
+    const entDocs = id => D.docs.filter(x => x.entityId === id);
+    const entView = e => Object.assign({}, e, {
+      placeLabel: e.place ? ' · ' + e.place : '', docCount: e.asset ? '' : entDocs(e.id).length,
+      childLabel: e.children && e.children.length ? ' · ' + e.children.length + ' ' + (e.assetLabel || 'schools').toLowerCase() : '',
+      docLabel: e.asset ? 'Kuwait' : entDocs(e.id).length + ' documents',
+      hasKids: !!(e.children && e.children.length), kids: (e.children || []).map(k => Object.assign({}, k, { go: k.asset ? go('entity', { platform: k.platform, entity: k.parent, folder: null }) : go('entity', { platform: k.platform, entity: k.id, folder: null }) })),
+      go: e.asset ? go('entity', { platform: e.platform, entity: e.parent, folder: null }) : go('entity', { platform: e.platform, entity: e.id, folder: null })
+    });
+    const grantable = Object.values(D.ENT).filter(e => !e.asset).length;
+    const platforms = D.PLATFORMS.map(p => {
+      const ents = p.companies.map(entView);
+      const tree = [];
+      p.companies.forEach(c => { tree.push(Object.assign(entView(c), { indent: 0 })); (c.children || []).forEach(k => tree.push(Object.assign(entView(k), { indent: 22 }))); });
+      const count = p.companies.length + p.companies.reduce((n, c) => n + (c.children || []).filter(k => !k.asset).length, 0);
+      const assets = p.companies.reduce((n, c) => n + (c.children || []).filter(k => k.asset).length, 0);
+      const countLabel = count + (count === 1 ? ' entity' : ' entities') + (assets ? ' · ' + assets + ' properties' : '');
+      return Object.assign({}, p, { count, countLabel, entities: ents, tree, go: go('platform', { platform: p.id, entity: null, folder: null }) });
+    });
+
+    const userName = (this.props.userName || 'Umair Shahid').trim();
+    const user = { name: userName, first: userName.split(' ')[0], initial: userName.charAt(0).toUpperCase(), role: this.props.userRole || 'Portal Administrator' };
+    const hour = new Date().getHours();
+    const greeting = hour < 12 ? 'Good morning' : hour < 17 ? 'Good afternoon' : 'Good evening';
+    const now = new Date();
+    const today = now.getDate() + ' ' + ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][now.getMonth()] + ' ' + now.getFullYear();
+
+    const REQ = [
+      { id: 'r1', role: 'Investment Committee', folder: 'Finance', node: 'MADAREK KSA', note: 'Enrolment model review before the October IC', ts: '26 Sep 2026' },
+      { id: 'r2', role: 'External Auditor (time-boxed)', folder: 'OD + Agreements', node: 'Spirit Healthcare Pharmacies', note: 'Licence schedule for FY2026 interim audit', ts: '25 Sep 2026' }
+    ];
+    const requests = REQ.filter(r => !s.decided[r.id]).map(r => Object.assign({}, r, {
+      grant: () => this.setState({ decided: Object.assign({}, s.decided, { [r.id]: 'granted' }) }),
+      deny: () => this.setState({ decided: Object.assign({}, s.decided, { [r.id]: 'denied' }) })
+    }));
+    const AUDIT = [
+      { ts: '28 Sep 2026 · 14:02', ev: 'Re-index completed — 64 SharePoint paths, 16 entities', actor: 'system' },
+      { ts: '27 Sep 2026 · 11:40', ev: 'Grant set: Platform Head — Education → Owner on Education', actor: 'Umair' },
+      { ts: '26 Sep 2026 · 16:15', ev: 'Access request opened by Investment Committee on MADAREK KSA · Finance', actor: 'ic' },
+      { ts: '25 Sep 2026 · 09:03', ev: 'Upload: Branch P&L — Aug 2026.xlsx → Spirit Healthcare Pharmacies · Finance', actor: 'Finance' },
+      { ts: '24 Sep 2026 · 17:48', ev: 'Sign-in: new Azure account landed as Pending Assignment', actor: 'system' },
+      { ts: '22 Sep 2026 · 10:21', ev: 'Deny set: External Auditor → none on Meeting Minutes (all nodes)', actor: 'Umair' }
+    ];
+    Object.keys(s.decided).forEach(id => { const r = REQ.find(x => x.id === id); if (r) AUDIT.unshift({ ts: today + ' · now', ev: 'Request ' + s.decided[id] + ': ' + r.role + ' → ' + r.folder + ' on ' + r.node, actor: 'Umair' }); });
+
+    const q = (s.query || '').trim().toLowerCase();
+    let docsFiltered = D.docs.filter(d => (s.fp === 'all' || d.platformId === s.fp) && (s.ff === 'all' || d.folderId === s.ff) && (!q || (d.name + ' ' + d.entity + ' ' + d.folder + ' ' + d.by).toLowerCase().includes(q)));
+    docsFiltered = docsFiltered.slice(0, 60).map(d => this.decorate(d));
+
+    const platChips = [{ id: 'all', label: 'All platforms' }].concat(D.PLATFORMS.map(p => ({ id: p.id, label: p.name }))).map(c => ({ label: c.label, cls: s.fp === c.id ? 'on' : '', go: () => this.setState({ fp: c.id }) }));
+    const folderChips = [{ id: 'all', label: 'All folders' }].concat(D.FOLDERS.map(f => ({ id: f.id, label: f.name }))).map(c => ({ label: c.label, cls: s.ff === c.id ? 'on' : '', go: () => this.setState({ ff: c.id }) }));
+
+    const platRaw = s.platform ? platforms.find(p => p.id === s.platform) : null;
+    const entRaw = s.entity ? D.ENT[s.entity] : null;
+    let ent = null;
+    if (entRaw) {
+      const ed = entDocs(entRaw.id);
+      const parent = entRaw.parent ? D.ENT[entRaw.parent] : null;
+      ent = Object.assign(entView(entRaw), {
+        goBudget: go('budget', { bEnt: entRaw.id }),
+        parentLabel: parent ? ' · ' + parent.name : '',
+        newest: ed.length ? ed[0].at.slice(0, 6) : '—',
+        restricted: ed.filter(x => x.cls === 'Restricted').length,
+        hasChildren: !!(entRaw.children && entRaw.children.length),
+        children: (entRaw.children || []).map(entView),
+        folders: D.FOLDERS.map(f => Object.assign({}, f, { count: ed.filter(x => x.folderId === f.id).length, go: go('folder', { folder: f.id }) })),
+        recent: ed.slice(0, 6).map(d => this.decorate(d))
+      });
+    }
+    let fold = null;
+    if (entRaw && s.folder) {
+      const f = D.FOLDERS.find(x => x.id === s.folder);
+      fold = Object.assign({}, f, { entity: entRaw.name, docs: entDocs(entRaw.id).filter(x => x.folderId === f.id).map(d => this.decorate(d)) });
+    }
+    const crumb = { p: platRaw ? platRaw.name : '', goP: platRaw ? platRaw.go : () => {}, e: ent ? ent.name : '', goE: ent ? ent.go : () => {} };
+
+    // ---- Budget (sample figures; per-entity series are deterministic off the entity id) ----
+    const OVER = '#9e3527', UNDER = '#2c6b50';
+    const bMonths = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep'];
+    const GROUP_B = [412, 398, 425, 440, 455, 430, 468, 472, 480], GROUP_A = [388, 405, 418, 452, 449, 437, 461, 490, 471];
+    const seriesFor = id => {
+      if (id === 'group') return { b: GROUP_B, a: GROUP_A };
+      const h = D.hashOf(id), scale = 0.03 + (h % 9) / 100;
+      const b = GROUP_B.map((v, i) => Math.round(v * scale * (1 + ((h * (i + 3)) % 7 - 3) / 60)));
+      const a = b.map((v, i) => Math.round(v * (1 + ((D.hashOf(id + i) % 15) - 7) / 100)));
+      return { b, a };
+    };
+    const kwdK = n => n >= 1000 ? 'KWD ' + (n / 1000).toFixed(2) + 'm' : 'KWD ' + n + 'k';
+    const pct = (a, b) => ((a - b) / b * 100).toFixed(1);
+    const bEnt = s.bEnt && D.ENT[s.bEnt] && !D.ENT[s.bEnt].asset ? D.ENT[s.bEnt] : null;
+    const ser = seriesFor(bEnt ? bEnt.id : 'group');
+    const maxV = Math.max(...ser.b, ...ser.a) * 1.08;
+    const months = bMonths.map((m, i) => ({ label: m.toUpperCase(), b: ser.b[i] + 'k', a: ser.a[i] + 'k', bh: Math.round(ser.b[i] / maxV * 220), ah: Math.round(ser.a[i] / maxV * 220) }));
+    const totB = ser.b.reduce((x, y) => x + y, 0), totA = ser.a.reduce((x, y) => x + y, 0);
+    const varPct = pct(totA, totB);
+    const diffs = ser.a.map((v, i) => v - ser.b[i]);
+    const bestIdx = diffs.indexOf(Math.min(...diffs));
+    let breakdown;
+    if (bEnt) {
+      const shares = [['Revenue', .58], ['Staff costs', .18], ['Operating expenses', .16], ['Capex', .08]];
+      breakdown = shares.map(([name, sh], i) => { const b = Math.round(totB * sh), a = Math.round(b * (1 + ((D.hashOf(bEnt.id + name) % 13) - 6) / 100)); return [name, b, a]; });
+    } else {
+      breakdown = [['Industrial', 1420, 1465], ['Education', 1210, 1188], ['Healthcare', 640, 672], ['Real Estate', 710, 646]];
+    }
+    const bMax = Math.max(...breakdown.map(r => Math.max(r[1], r[2]))) * 1.05;
+    const byP = breakdown.map(([name, b, a]) => {
+      const v = pct(a, b);
+      return { name, b: b + 'k', a: a + 'k', bw: Math.round(b / bMax * 100), aw: Math.round(a / bMax * 100), var: (v > 0 ? '+' : '') + v + '%', varColor: v > 0 ? OVER : UNDER };
+    });
+    const entityTiles = Object.values(D.ENT).filter(e => !e.asset).map(e => {
+      const sr = seriesFor(e.id), b = sr.b.reduce((x, y) => x + y, 0), a = sr.a.reduce((x, y) => x + y, 0), v = pct(a, b);
+      return { name: e.name, img: e.img, fallback: e.fallback, b: b + 'k', a: a + 'k', var: (v > 0 ? '+' : '') + v + '%', varColor: v > 0 ? OVER : UNDER, go: go('budget', { bEnt: e.id }) };
+    });
+    const options = [{ id: 'group', label: 'SANAM Group — consolidated' }].concat(D.PLATFORMS.flatMap(p => p.companies.flatMap(c => [{ id: c.id, label: p.name + ' · ' + c.name }].concat((c.children || []).filter(k => !k.asset).map(k => ({ id: k.id, label: p.name + ' · ' + c.name + ' · ' + k.name }))))));
+    const budget = {
+      months, byPlatform: byP, entityTiles, options,
+      sel: bEnt ? bEnt.id : 'group', onSel: e => this.setState({ bEnt: e.target.value }),
+      isGroup: !bEnt, isEntity: !!bEnt,
+      title: bEnt ? bEnt.name : 'Budget vs actual',
+      scopeLabel: bEnt ? 'Entity' : 'Consolidated',
+      logo: bEnt ? bEnt.logo : '', hasLogo: bEnt ? bEnt.hasLogo : false,
+      breakdownTitle: bEnt ? 'By category · variance' : 'By platform · variance',
+      goEntity: bEnt ? go('entity', { platform: bEnt.platform, entity: bEnt.id, folder: null }) : () => {},
+      goGroup: () => this.setState({ bEnt: 'group' }),
+      tiles: [
+        { label: 'Budget YTD', value: kwdK(totB), delta: 'Jan – Sep 2026', deltaColor: 'rgba(33,32,31,.6)' },
+        { label: 'Actual YTD', value: kwdK(totA), delta: (varPct > 0 ? '+' : '') + varPct + '% vs budget', deltaColor: varPct > 0 ? OVER : UNDER },
+        { label: 'Variance', value: 'KWD ' + (totA - totB) + 'k', delta: varPct > 0 ? 'Over budget' : 'Under budget', deltaColor: varPct > 0 ? OVER : UNDER },
+        bEnt ? { label: 'Best month', value: bMonths[bestIdx], delta: 'Lowest variance', deltaColor: UNDER } : { label: 'Entities reporting', value: grantable + ' / ' + grantable, delta: 'Reporting complete', deltaColor: UNDER } ] };
+
+    const LV = { owner: ['Owner', '#21201f', '#f6f1f0', '#21201f'], contributor: ['Contrib.', '#bdaba2', '#21201f', '#bdaba2'], viewer: ['Viewer', '#f6f1f0', '#21201f', 'rgba(33,32,31,.35)'], none: ['—', '#fff', 'rgba(33,32,31,.35)', 'rgba(33,32,31,.15)'] };
+    const roles = D.ROLES.map(r => {
+      const cells = ['industrial', 'education', 'healthcare', 'realestate'].map(pid => {
+        const scoped = r.scope && r.scope[pid];
+        const lvl = scoped || r.dflt;
+        const L = LV[lvl];
+        return { label: L[0], bg: L[1], fg: L[2], line: L[3], border: scoped ? 'dashed' : 'solid', title: scoped ? 'Built-in scope: ' + lvl : 'Role default: ' + lvl };
+      });
+      return Object.assign({}, r, { cells, extra: r.extra || '', dfltLabel: 'default · ' + r.dflt });
+    });
+
+    const recent = D.docs.slice(0, 7).map(d => this.decorate(d));
+
+    return {
+      nav, greeting, today, crumb, query: s.query, heroImg: D.HERO.realestate, user,
+      menuCls: s.menu ? 'open' : '', toggleMenu: () => this.setState({ menu: !s.menu }),
+      yes: true, zero: 0, muteVideo: e => { try { e.target.muted = true; e.target.volume = 0; } catch (x) {} },
+      onQuery: e => this.setState({ query: e.target.value }),
+      goHome: go('home', { platform: null, entity: null, folder: null }),
+      goDocs: go('docs', { platform: null, entity: null, folder: null }),
+      goMap: go('map', { platform: null, entity: null, folder: null }),
+      goAccess: go('access', { platform: null, entity: null, folder: null }),
+      goAudit: go('audit', { platform: null, entity: null, folder: null }),
+      goEntityBack: go('entity', { folder: null }),
+      isHome: s.screen === 'home', isPlatform: s.screen === 'platform' && !!platRaw, isEntity: s.screen === 'entity' && !!ent, isFolder: s.screen === 'folder' && !!fold,
+      isDocs: s.screen === 'docs', isMap: s.screen === 'map', isBudget: s.screen === 'budget', isAccess: s.screen === 'access', isPeople: s.screen === 'people', isAudit: s.screen === 'audit',
+      stats: { docs: D.docs.length, decide: requests.length, ents: grantable },
+      platforms, recent, requests, noRequests: requests.length === 0,
+      auditShort: AUDIT.slice(0, 5), audit: AUDIT,
+      plat: platRaw || {}, ent: ent || {}, fold: fold || {},
+      docsFiltered, noDocs: docsFiltered.length === 0, platChips, folderChips,
+      budget, roles
+    };
+  }
+}
+</script>
+</body>
+</html>
